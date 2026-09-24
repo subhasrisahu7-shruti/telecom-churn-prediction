@@ -1,18 +1,40 @@
-# Telecom Customer Churn Prediction (Classification)
+# 📊 Enterprise Telecom Churn Decision Intelligence Suite
 
-An end-to-end Machine Learning project completed during my first year as an online BCA in AI & Data Science student at Manipal University Jaipur (MUJ). This project utilizes classification models to identify retail customers at high risk of canceling their subscriptions, enabling businesses to take proactive retention steps.
+An end-to-end predictive machine learning pipeline and interactive decision-support application built during my online BCA program in AI & Data Science from Manipal University Jaipur (MUJ). This application bridges the gap between static predictive scripting and live corporate workflows.
 
-## 📊 Project Results
-* **Model Used:** Random Forest Classifier
-* **Overall Model Accuracy:** **81.00%** 🎯
-* **Core Task:** Binary Classification (0 = Customer Stays, 1 = Customer Leaves)
+## 🔗 Live Production Deployment
+🎯 **Interactive Cloud App:** [https://streamlit.app](https://streamlit.app)
 
-## 📁 Repository Files
-* `churn_model.py`: Main Python script containing the machine learning architecture.
-* `requirements.txt`: Python package dependency list.
+---
 
-## 🛠️ Machine Learning Pipeline
-1. **Data Preprocessing:** Standardized data fields, handled missing values locally, and utilized `LabelEncoder` to transform categorical data into machine-readable numeric formats.
-2. **Feature Engineering:** Calculated logical data correlations between customer tenure and financial variables to predict retention trends.
-3. **Model Training:** Implemented a `RandomForestClassifier` using Scikit-Learn to evaluate customer behavior branches.
-4. **Evaluation:** Verified predictive performance, achieving an 81.00% success accuracy benchmark.
+## 🚀 Key Operational Features
+- **🎯 Live Profile Risk Evaluator:** Side-panel attribute sliders allowing retention managers to manually input standalone customer variables (Tenure, Contract, Monthly Billing) to compute real-time churn risk indicators instantly.
+- **⚡ Database Scoring Engine:** Simulates automated extraction and processing of bulk telemetry records from an enterprise operational database.
+- **🏢 Executive Financial Impact Summary:** Dynamically visualizes Monthly Recurring Revenue (MRR) at stake, tracking net recovered funds based on custom-tuned tactical concession discounts.
+- **📊 Explanatory Risk Driver Visualizations:** Native horizontal feature importance plots derived directly from model weights to highlight principal churn indicators.
+
+## 🧠 Model Technical Architecture
+- **Algorithm Engine:** Random Forest Classifier (Scikit-Learn).
+- **Performance Metric:** Benchmarked at a **70% to 81.00% predictive success rate**.
+- **Data Engineering:** Continuous categorical handling using custom `LabelEncoder` scaling to evaluate high-risk month-to-month subscription structures.
+
+## 🛠️ Technology Stack & Extensions
+- **Core Languages:** Python (Pandas, NumPy)
+- **Machine Learning:** Scikit-Learn
+- **Dashboard UI Assembly:** Streamlit Web Framework
+- **Cloud Infrastructure:** Streamlit Community Cloud Engine
+- **Future Enterprise Roadmap:** Integration of PostgreSQL database nodes, XGBoost/LightGBM gradient boosting models, and Docker application container environments.
+
+## 💻 Local Workspace Deployment Instructions
+1. Clone the repository workspace:
+   ```bash
+   git clone https://github.com
+   ```
+2. Ingest the required production environment libraries:
+   ```bash
+   pip install streamlit pandas numpy scikit-learn
+   ```
+3. Boot up the local user interface script:
+   ```bash
+   streamlit run app.py
+   ```
