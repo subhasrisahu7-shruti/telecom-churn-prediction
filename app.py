@@ -97,6 +97,7 @@ st.markdown("""
             padding: 24px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #ffffff;
         }
         .saas-card:hover {
             transform: translateY(-4px);
@@ -190,7 +191,7 @@ def log_user_inference(tenure, contract, billing, volatility, final_prob, risk_s
 
 if model and encoder:
     # 3. Sidebar UI Parameters Controller Layer
-    st.sidebar.header("🎯 Accounts Telemetry Fe feeds")
+    st.sidebar.header("🎯 Accounts Telemetry Feeds")
     tenure = st.sidebar.slider("Customer Tenure Length (Months)", min_value=1, max_value=72, value=12)
     contract_type = st.sidebar.selectbox("Contractual Agreement Type", options=['Month-to-month', 'One year', 'Two year'])
     monthly_billing = st.sidebar.slider("Subscriber Monthly Charges ($)", min_value=20.0, max_value=120.0, value=55.0)
@@ -200,7 +201,7 @@ if model and encoder:
     market_volatility = st.sidebar.slider("Market Churn Volatility Index", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
     competitor_pressure = st.sidebar.checkbox("Apply High Aggressive Competitor Scenario", value=False)
 
-    contract_encoded = encoder.transform([contract_type])[0]
+    contract_encoded = encoder.transform([contract_type])
     input_dataframe = pd.DataFrame([{
         'Tenure': tenure,
         'Contract': contract_encoded,
@@ -225,12 +226,17 @@ if model and encoder:
         # Save transaction entry record into CSV database files
         log_user_inference(tenure, contract_type, monthly_billing, market_volatility, final_probability, final_prediction)
 
-        # --- ADVANCED WEB COMPONENT LAYER: SAAS METRIC GRID GRID LAYOUT WITH EMBEDDED JAVASCRIPT ---
+        # Determine color tag parameters for structural visual UI states
+        status_color = "#ef4444" if final_prediction == 1 else "#10b981"
+        status_text = "🚨 HIGH CHURN RISK" if final_prediction == 1 else "✅ RETAINED PROFILE"
+
+        # --- ADVANCED WEB COMPONENT LAYER: COMPILING DYNAMIC RENDER GRID ---
+        # Splitting HTML string elements with escaped double braces protects syntax operations
         st.markdown(f"""
             <div class="grid-container">
-                <div class="saas-card" style="border-left: 4px solid {'#ef4444' if final_prediction == 1 else '#10b981'};">
+                <div class="saas-card" style="border-left: 4px solid {status_color};">
                     <div class="card-label">⚡ Real-Time Churn Analysis Matrix</div>
-                    <div class="card-value">{"🚨 HIGH CHURN RISK" if final_prediction == 1 else "✅ RETAINED PROFILE"}</div>
+                    <div class="card-value">{status_text}</div>
                     <p style="margin:8px 0 0 0; color:#9ca3af; font-size:0.9rem;">Computed Probability Index Score: <b>{final_probability*100:.2f}%</b></p>
                 </div>
                 <div class="saas-card" style="border-left: 4px solid #3b82f6;">
@@ -241,6 +247,5 @@ if model and encoder:
             </div>
 
             <!-- Full-Stack Web Component Layer: Responsive Prescriptive JavaScript Calculator Asset Module -->
-            <div class="saas-card" style="margin-bottom:30px; border-top: 2px solid #10b981;">
-                <div class="card-label" style="color:#10b981;">💰 Client-Side JavaScript Optimization Engine Playground</div>
-                <p style="color:#e2e8f0; font-size:0.95rem; margin:0 0 12px 0;">
+\\
+    
