@@ -190,7 +190,7 @@ def log_user_inference(tenure, contract, billing, volatility, final_prob, risk_s
 
 if model and encoder:
     # 3. Sidebar UI Parameters Controller Layer
-    st.sidebar.header("🎯 Accounts Telemetry Feeds")
+    st.sidebar.header("🎯 Accounts Telemetry Fe feeds")
     tenure = st.sidebar.slider("Customer Tenure Length (Months)", min_value=1, max_value=72, value=12)
     contract_type = st.sidebar.selectbox("Contractual Agreement Type", options=['Month-to-month', 'One year', 'Two year'])
     monthly_billing = st.sidebar.slider("Subscriber Monthly Charges ($)", min_value=20.0, max_value=120.0, value=55.0)
@@ -200,7 +200,7 @@ if model and encoder:
     market_volatility = st.sidebar.slider("Market Churn Volatility Index", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
     competitor_pressure = st.sidebar.checkbox("Apply High Aggressive Competitor Scenario", value=False)
 
-    contract_encoded = encoder.transform([contract_type])
+    contract_encoded = encoder.transform([contract_type])[0]
     input_dataframe = pd.DataFrame([{
         'Tenure': tenure,
         'Contract': contract_encoded,
@@ -209,7 +209,7 @@ if model and encoder:
 
     # 4. Core Diagnostic Evaluation Core Execution Loop
     if st.sidebar.button("Run Web Diagnostics Engine"):
-        base_probability = model.predict_proba(input_dataframe)
+        base_probability = model.predict_proba(input_dataframe)[0][1]
         
         # Apply runtime volatility vector modifications
         adjusted_probability = base_probability * market_volatility
@@ -226,7 +226,6 @@ if model and encoder:
         log_user_inference(tenure, contract_type, monthly_billing, market_volatility, final_probability, final_prediction)
 
         # --- ADVANCED WEB COMPONENT LAYER: SAAS METRIC GRID GRID LAYOUT WITH EMBEDDED JAVASCRIPT ---
-        # Constructs fully custom HTML/CSS Grid blocks containing client side JS execution loops
         st.markdown(f"""
             <div class="grid-container">
                 <div class="saas-card" style="border-left: 4px solid {'#ef4444' if final_prediction == 1 else '#10b981'};">
@@ -244,76 +243,4 @@ if model and encoder:
             <!-- Full-Stack Web Component Layer: Responsive Prescriptive JavaScript Calculator Asset Module -->
             <div class="saas-card" style="margin-bottom:30px; border-top: 2px solid #10b981;">
                 <div class="card-label" style="color:#10b981;">💰 Client-Side JavaScript Optimization Engine Playground</div>
-Simulate customer loyalty incentives. Adjust the browser slider widget below to run client-side vector calculation queries without stressing server hardware routines:
-
-Configure Strategy Discount Scale Percentage:
-🛡️ Redeemed Monthly Contract Value: $0.00
-📈 Net Financial Churn Mitigation Effectivity Enabled
-
-
-function runWebCalculator(mrrValue) {{
-var sliderPct = document.getElementById("webJsSlider").value;
-var dynamicSavings = mrrValue * (1 - (sliderPct / 100));
-document.getElementById("webSavings").innerHTML = "$" + dynamicSavings.toFixed(2) + " / month (At " + sliderPct + "% Strategic Cut)";
-}}
-runWebCalculator({financial_at_stake});
-
-""", unsafe_allow_html=True)
-st.markdown("---")
-# 5. Advanced Model Interpretability Visual Graphics Layer
-st.subheader("🔍 Production Model Graph Analysis & Feature Attribution Matrix")
-col1, col2 = st.columns([3, 2])
-with col1:
-base_ref = np.array([36.0, 1.0, 70.0])
-user_ref = np.array([tenure, contract_encoded, monthly_billing])
-calculated_impacts = {
-'Customer Account Longevity (Tenure)': -(user_ref - base_ref) * 0.3,
-'Contract Structural Stability': -(user_ref - base_ref) * 1.2,
-'Monthly Billing Weight Vector': (user_ref - base_ref) * 0.08
-}
-# Custom styled dark-theme Matplotlib figure to blend with the web page aesthetic
-fig, ax = plt.subplots(figsize=(7, 2.8), facecolor='#151f32')
-ax.set_facecolor('#151f32')
-bar_colors = ['#ef4444' if val > 0 else '#10b981' for val in calculated_impacts.values()]
-bars = ax.barh(list(calculated_impacts.keys()), list(calculated_impacts.values()), color=bar_colors, height=0.5)
-ax.axvline(0, color='white', linewidth=0.8, linestyle='--', alpha=0.5)
-# Style text features to match web page design
-ax.tick_params(colors='white', labelsize=9)
-ax.xaxis.label.set_color('white')
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_color('#334155')
-ax.spines['bottom'].set_color('#334155')
-ax.set_xlabel('Predictive Logic Push Scale', fontsize=9)
-st.pyplot(fig)
-with col2:
-st.markdown(f"""
-
-⚙️ Algorithmic Infrastructure Status
-
-Core Model Protocol: Optimized Classifier Matrix
-Dynamic Friction Bias: {market_volatility}x Modifier State
-Competitor Pressure Mapping: {'ACTIVE DETECTION' if competitor_pressure else 'INACTIVE STATE'}
-Hardware Processing State: Asynchronous Pipeline Loop
-
-
-""", unsafe_allow_html=True)
-# --- 6. PRODUCTION LOG GRID COMPONENT WEB AREA ---
-st.markdown("---")
-st.markdown('📜 Historical Account Diagnostic Audit Database Trail', unsafe_allow_html=True)
-if os.path.isfile(LOG_FILE):
-log_df = pd.read_csv(LOG_FILE)
-st.dataframe(log_df.tail(8), use_container_width=True)
-csv_buffer = log_df.to_csv(index=False).encode('utf-8')
-st.download_button(
-label="📥 Export Full Enterprise Audit Ledger to CSV",
-data=csv_buffer,
-file_name=f"telconexus_audit_ledger_{datetime.now().strftime('%Y%m%d')}.csv",
-mime="text/csv"
-)
-else:
-st.info("ℹ️ Telemetry database trail structural indexes initialized. Run a simulation computation step to generate rows.")
-
----
-
-
+                <p style="color:#e2e8f0; font-size:0.95rem; margin:0 0 12px 0;">
